@@ -1,0 +1,51 @@
+// Made by Jgc7 (https://github.com/jgc777)
+name: Publish for .NET 8.0 and release
+on:
+  push:
+    branches:
+      - master
+    paths-ignore: // Ignore some commits that don't affect the code
+      - '*.md'
+      - '*.yml'
+      - '.git*'
+      - 'LICENSE'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up .NET 8.0
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build and publish // Change this if you don't want to compile like this. It doesn't give you the exact same output that VS22
+      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ./publish -p:PublishTrimmed=true -p:PublishReadyToRun=true
+
+    - name: Upload artifact // Upload the build for the release process
+      uses: actions/upload-artifact@v3
+      with:
+        name: published-app
+        path: ./publish/*
+  release: // Separated for better debugging
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact // Download the generated file/s
+      uses: actions/download-artifact@v3
+      with:
+        name: published-app
+    - name: Create GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        name: "Build ${{ github.run_number }}" // Build (commit)
+        tag: ${{ github.run_number }} // (commit)
+        body: "Latest windows binary with .NET 8.0 included (automatically compiled)" // Release description
+        token: ${{ secrets.GITHUB_TOKEN }} // you don't need to change this
+        artifacts: ./* // Include the files
