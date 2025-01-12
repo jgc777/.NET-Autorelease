@@ -1,5 +1,6 @@
-# .NET Auto Build and Release (Github Actions)
- Automatically compile and make a release on github.
+# .NET Autorelease
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+ Automatically compile for .NET (or other) and make a release on github.
 ## Using it
  Just use this template or copy ‎`.github/workflows/publish.yml` to your repository. You might wwant to remove the `_config.yml`, `LICENSE` and `README.md`
 ## Troubleshooting
