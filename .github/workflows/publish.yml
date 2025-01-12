@@ -1,9 +1,9 @@
 # Made by Jgc7 (https://github.com/jgc777)
-name: Publish for .NET 8.0 and release
+name: Build and release
 on:
   push:
     branches:
-      - master
+      - main # Make sure this is the name of your branch
     paths-ignore: # Ignore some commits that don't affect the code
       - '*.md'
       - '*.yml'
@@ -11,18 +11,18 @@ on:
       - 'LICENSE'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # You can also use windows-lastest or self-hosted but is slower
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Set up .NET 8.0
+    - name: Set up .NET 8.0 # You can change this to use other versions or languages
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.0.x' # You can change this to use other versions or languages
 
-    - name: Restore dependencies
+    - name: Restore dependencies # You can change this to use other versions or languages
       run: dotnet restore
 
     - name: Build and publish # Change this if you don't want to compile like this. It doesn't give you the exact same output that VS22
@@ -31,7 +31,7 @@ jobs:
     - name: Upload artifact # Upload the build for the release process
       uses: actions/upload-artifact@v3
       with:
-        name: published-app
+        name: published-app # If you change this you also have to change it on the next job
         path: ./publish/*
   release: # Separated for better debugging
     needs: build
