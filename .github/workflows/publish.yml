@@ -6,9 +6,8 @@ on:
       - main # Make sure this is the name of your branch
     paths-ignore: # Ignore some commits that don't affect the code
       - '*.md'
-      - '*.yml'
+      - '_config.yml'
       - '.git*'
-      - 'LICENSE'
 jobs:
   build:
     runs-on: ubuntu-latest # You can also use windows-lastest or self-hosted but is slower
