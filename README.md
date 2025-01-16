@@ -4,7 +4,7 @@
 
  Automatically compile for .NET (or other) and make a release on github.
 ## Using it
- Just use this template or copy ‎`.github/workflows/publish.yml` to your repository. If you don't uncheck the "copy all branches option" this page will be copied.
+ Just use this template or copy ‎`.github/workflows/publish.yml` (main branch) to your repository. If you don't uncheck the "copy all branches option" this page will be copied.
 ## Troubleshooting
  If you get an error you might be using other branch name, a bad setting for github actions permissions, or a repository with more than one solution/project (specify it on the publish.yml build command).
 ## License
