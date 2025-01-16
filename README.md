@@ -8,4 +8,4 @@
 ## Troubleshooting
  If you get an error you might be using other branch name, a bad setting for github actions permissions, or a repository with more than one solution/project (specify it on the publish.yml build command).
 ## License
- [![License](https://img.shields.io/github/license/jgc777/.NET-Autorelease?style=for-the-badge)](./LICENSE)
+ [This project uses the "Unlicense"](./LICENSE)
