@@ -28,16 +28,15 @@ jobs:
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ./publish -p:PublishTrimmed=true -p:PublishReadyToRun=true
 
     - name: Upload artifact # Upload the build for the release process
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: published-app # If you change this you also have to change it on the next job
         path: ./publish/*
   release: # Separated for better debugging
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Download artifact # Download the generated file/s
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: published-app
     - name: Create GitHub Release
