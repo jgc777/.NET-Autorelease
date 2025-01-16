@@ -11,28 +11,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest # You can also use windows-lastest or self-hosted but is slower
-
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
-
     - name: Set up .NET 8.0 # You can change this to use other versions or languages
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x' # You can change this to use other versions or languages
-
     - name: Restore dependencies # You can change this to use other versions or languages
       run: dotnet restore
-
     - name: Build and publish # Change this if you don't want to compile like this. It doesn't give you the exact same output that VS22
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ./publish -p:PublishTrimmed=true -p:PublishReadyToRun=true
-
     - name: Upload artifact # Upload the build for the release process
       uses: actions/upload-artifact@v4
       with:
         name: published-app # If you change this you also have to change it on the next job
         path: ./publish/*
   release: # Separated for better debugging
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Download artifact # Download the generated file/s
