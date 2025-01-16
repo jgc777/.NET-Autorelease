@@ -8,4 +8,4 @@
 ## Troubleshooting
  If you get an error you might be using other branch name, a bad setting for github actions permissions, or a repository with more than one solution/project (specify it on the publish.yml build command).
 ## License
- [This project uses the "Unlicense"](./LICENSE)
+ This project uses the ["Unlicense"](./LICENSE)
