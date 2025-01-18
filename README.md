@@ -1,8 +1,8 @@
 # .NET Autorelease
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white&color=black)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
- Automatically compile for .NET (or other) and make a release on github.
+ Automatically compile for .NET (or other) and make a release on GitHub.
 ## Using it
  Just use this template or copy ‎`.github/workflows/publish.yml` (main branch) to your repository and then include your solution on the repo. If the "include all branches" option isn't disabled this page will also be copied.
 ## Troubleshooting
